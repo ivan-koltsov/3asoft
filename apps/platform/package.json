@@ -1,0 +1,43 @@
+{
+  "name": "@hatch/platform",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "nest build",
+    "dev": "nest start --watch",
+    "start": "node dist/main",
+    "start:dev": "nest start --watch",
+    "test": "jest --passWithNoTests",
+    "test:unit": "jest --testPathPattern=\\.spec\\.ts$ --passWithNoTests",
+    "test:integration": "jest --testPathPattern=\\.integration\\.ts$ --passWithNoTests",
+    "migrate": "ts-node src/database/run-migrations.ts"
+  },
+  "dependencies": {
+    "@hatch/contracts": "workspace:*",
+    "@nestjs/common": "^10.4.0",
+    "@nestjs/config": "^3.3.0",
+    "@nestjs/core": "^10.4.0",
+    "@nestjs/platform-express": "^10.4.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "knex": "^3.1.0",
+    "pg": "^8.13.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1",
+    "uuid": "^11.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^10.4.0",
+    "@nestjs/schematics": "^10.2.0",
+    "@nestjs/testing": "^10.4.0",
+    "@types/express": "^5.0.6",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.0",
+    "@types/uuid": "^10.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.0"
+  }
+}
