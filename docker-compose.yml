@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: hatch
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DATABASE_ADMIN_PASSWORD:-postgres_admin_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hatch"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  platform:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    environment:
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: hatch
+      DATABASE_USER: ${DATABASE_USER:-hatch_app}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-change_me_in_production}
+      DATABASE_ADMIN_USER: ${DATABASE_ADMIN_USER:-postgres}
+      DATABASE_ADMIN_PASSWORD: ${DATABASE_ADMIN_PASSWORD:-postgres_admin_password}
+      APP_PORT: 3000
+      NODE_ENV: development
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
