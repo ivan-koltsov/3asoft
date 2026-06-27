@@ -1,0 +1,16 @@
+{
+  "name": "@hatch/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "echo 'No tests for contracts'",
+    "test:unit": "echo 'No tests for contracts'",
+    "test:integration": "echo 'No tests for contracts'"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}
